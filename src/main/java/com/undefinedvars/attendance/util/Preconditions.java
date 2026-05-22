@@ -17,6 +17,7 @@ public final class Preconditions {
         return value;
     }
 
+    // TODO: Modify the email verification logic
     public static String requireValidEmail(String email, String fieldName) {
         requireNonBlank(email, fieldName);
         int atIndex = email.indexOf('@');
