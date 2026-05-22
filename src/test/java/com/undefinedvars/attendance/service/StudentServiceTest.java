@@ -3,7 +3,7 @@ package com.undefinedvars.attendance.service;
 import com.undefinedvars.attendance.model.Group;
 import com.undefinedvars.attendance.model.Student;
 import com.undefinedvars.attendance.repository.InMemoryStudentRepository;
-import com.undefinedvars.attendance.repository.Repository;
+import com.undefinedvars.attendance.repository.StudentRepository;
 import com.undefinedvars.attendance.util.IdGenerator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +38,7 @@ class StudentServiceTest {
     */
     @BeforeEach
     void setUp() {
-        Repository<Student, String> repository = new InMemoryStudentRepository();
+        StudentRepository repository = new InMemoryStudentRepository();
         IdGenerator idGenerator = new SequentialIdGenerator();
         Group group = Group.builder().id("g1").name("Test Group").build();
         service = new StudentService(repository, idGenerator, group);

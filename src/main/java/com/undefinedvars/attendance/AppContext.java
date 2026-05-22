@@ -1,9 +1,8 @@
 package com.undefinedvars.attendance;
 
 import com.undefinedvars.attendance.model.Group;
-import com.undefinedvars.attendance.model.Student;
 import com.undefinedvars.attendance.repository.InMemoryStudentRepository;
-import com.undefinedvars.attendance.repository.Repository;
+import com.undefinedvars.attendance.repository.StudentRepository;
 import com.undefinedvars.attendance.service.StudentService;
 import com.undefinedvars.attendance.util.IdGenerator;
 import com.undefinedvars.attendance.util.UuidGenerator;
@@ -23,7 +22,7 @@ public final class AppContext {
     public static AppContext bootstrap() {
         Group group = Group.builder().id(DEFAULT_GROUP_ID).name("Group A").build();
         IdGenerator idGenerator = new UuidGenerator();
-        Repository<Student, String> repo = new InMemoryStudentRepository();
+        StudentRepository repo = new InMemoryStudentRepository();
         StudentService service = new StudentService(repo, idGenerator, group);
         return new AppContext(service);
     }
