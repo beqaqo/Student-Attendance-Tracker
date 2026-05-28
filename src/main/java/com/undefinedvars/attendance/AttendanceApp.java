@@ -1,5 +1,6 @@
 package com.undefinedvars.attendance;
 
+import com.undefinedvars.attendance.controller.AttendanceController;
 import com.undefinedvars.attendance.controller.StudentController;
 
 import javafx.application.Application;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 /*
     Application entry point. Builds the object graph via AppContext,
     loads the FXML layout, and shows the window. The controllerFactory
-    is what lets our constructor-injected StudentController work with
+    is what lets our constructor-injected controllers work with
     JavaFX, which would otherwise demand a no-arg constructor.
 */
 public final class AttendanceApp extends Application {
@@ -31,19 +32,29 @@ public final class AttendanceApp extends Application {
                 getClass().getResource("/fxml/main_view.fxml"));
 
         /*
-            The controller factory: when the loader needs the controller
-            named in the FXML, it calls this instead of new-ing a no-arg
-            one. We construct StudentController with its dependency.
+            The controller factory: when the loader needs a controller
+            named in any FXML (including fx:include'd files), it calls this
+            instead of new-ing a no-arg one. We construct each controller
+            with its injected dependencies.
         */
-        loader.setControllerFactory(type ->
-                new StudentController(context.getStudentService()));
+        loader.setControllerFactory(type -> {
+            if (type == StudentController.class) {
+                return new StudentController(context.getStudentService());
+            }
+            if (type == AttendanceController.class) {
+                return new AttendanceController(
+                        context.getAttendanceService(),
+                        context.getStudentService());
+            }
+            throw new IllegalArgumentException("Unknown controller type: " + type);
+        });
 
         // load() reads the FXML and builds the UI tree; Parent is its root.
         Parent root = loader.load();
 
         // A Scene wraps the UI tree; the numbers are window size in pixels.
         stage.setTitle("Student Attendance Tracker");
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(new Scene(root, 620, 520));
         stage.show();
     }
 
