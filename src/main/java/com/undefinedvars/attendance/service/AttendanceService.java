@@ -16,7 +16,7 @@ import java.util.Optional;
 /*
     Service class responsible for attendance-related operations.
     Enforces the business rules: non-future date, valid student and status,
-    and the upsert rule — exactly one AttendanceRecord per (student, date) pair.
+    and the upsert rule, exactly one AttendanceRecord per (student, date) pair.
  */
 public final class AttendanceService {
 
@@ -25,7 +25,7 @@ public final class AttendanceService {
     private final IdGenerator idGenerator;
 
     /*
-        Dependency Injection — mirrors StudentService constructor style.
+        Dependency Injection - mirrors StudentService constructor style.
      */
     public AttendanceService(AttendanceRepository attendanceRepository,
                              StudentService studentService,
@@ -50,7 +50,7 @@ public final class AttendanceService {
             throw new IllegalArgumentException("date cannot be in the future");
         }
 
-        // Upsert: reuse the existing id if a record already exists for this student+date
+        // Upsert: reuse the existing id if a record already exists for this student and date
         Optional<AttendanceRecord> existing =
                 attendanceRepository.findByStudentAndDate(student.getId(), date);
 
@@ -69,8 +69,8 @@ public final class AttendanceService {
     /*
         Marks attendance in bulk for an entire class on a given date.
         Calls mark() for each entry, so the upsert rule is applied per student.
-        The natural flow is: user picks a date → sees all students → adjusts
-        statuses → clicks Save, which calls markBulk.
+        The natural flow is: user picks a date, sees all students, adjusts
+        statuses and then clicks Save, which calls markBulk.
      */
     public List<AttendanceRecord> markBulk(LocalDate date, Map<Student, AttendanceStatus> statuses) {
         Objects.requireNonNull(date, "date cannot be null");

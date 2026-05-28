@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.undefinedvars.attendance.controller.StudentController"
+      spacing="10">
+
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
+
+    <HBox spacing="8">
+        <TextField fx:id="nameField" promptText="Full name"/>
+        <TextField fx:id="emailField" promptText="Email"/>
+        <Button fx:id="addButton" text="Add" onAction="#handleAdd"/>
+    </HBox>
+
+    <Label fx:id="errorLabel" style="-fx-text-fill: #e74c3c;"/>
+
+    <TableView fx:id="studentTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="280"/>
+        </columns>
+    </TableView>
+
+</VBox>
