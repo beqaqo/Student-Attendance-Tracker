@@ -5,6 +5,10 @@ import com.undefinedvars.attendance.model.Student;
 
 import java.util.Objects;
 
+/*
+    Mapper class responsible for converting between AttendanceRecord domain objects and AttendanceRecordDto data transfer objects.
+    This separation allows us to decouple the internal domain model from the persistence layer, adhering to the Single Responsibility Principle (SRP).
+ */
 public final class AttendanceRecordMapper {
     private AttendanceRecordMapper() {}
 
