@@ -1,6 +1,7 @@
 package com.undefinedvars.attendance;
 
 import com.undefinedvars.attendance.controller.AttendanceController;
+import com.undefinedvars.attendance.controller.StatisticsController;
 import com.undefinedvars.attendance.controller.StudentController;
 
 import javafx.application.Application;
@@ -43,6 +44,11 @@ public final class AttendanceApp extends Application {
             }
             if (type == AttendanceController.class) {
                 return new AttendanceController(
+                        context.getAttendanceService(),
+                        context.getStudentService());
+            }
+            if (type == StatisticsController.class) {
+                return new StatisticsController(
                         context.getAttendanceService(),
                         context.getStudentService());
             }
