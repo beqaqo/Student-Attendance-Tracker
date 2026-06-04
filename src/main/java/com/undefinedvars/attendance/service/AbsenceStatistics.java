@@ -7,6 +7,7 @@ import com.undefinedvars.attendance.model.Student;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /*
@@ -93,7 +94,7 @@ public final class AbsenceStatistics {
         }
 
         public String getAbsenceRateText() {
-            return String.format("%.1f%%", getAbsenceRate());
+            return String.format(Locale.US, "%.1f%%", getAbsenceRate());
         }
     }
 }
