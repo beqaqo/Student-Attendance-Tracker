@@ -9,12 +9,14 @@ In development. Current functionality:
 
 - Add a student via a form (full name and email)
 - View all added students in a list
-- Mark attendance per date for every student (Present / Absent / Late /
-  Excused), with bulk save and pre-fill of existing records
+- Mark attendance per date for every student (Present / Absent / Late), with
+  bulk save and pre-fill of existing records
+- View absence statistics per student, including total marked records, absence
+  count, late count, and absence percentage
 - Persist students and attendance records to JSON on disk via Jackson,
   so data survives across application restarts
 
-Planned (later milestones): absence statistics and reporting.
+Planned (later milestones): reporting/export features.
 
 ## Technology Stack
 
