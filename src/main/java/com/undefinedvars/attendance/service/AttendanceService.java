@@ -84,6 +84,14 @@ public final class AttendanceService {
     }
 
     /*
+       Returns all attendance records.
+       Used by the statistics screen to calculate absence totals and rates.
+    */
+    public List<AttendanceRecord> findAll() {
+        return attendanceRepository.findAll();
+    }
+
+    /*
         Returns all attendance records for the given date.
         Used by the controller to pre-fill the table when the user picks a date.
      */

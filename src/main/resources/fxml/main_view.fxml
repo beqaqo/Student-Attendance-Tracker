@@ -26,6 +26,13 @@
                 <fx:include source="attendance_view.fxml"/>
             </content>
         </Tab>
+
+        <!-- Statistics Tab -->
+        <Tab text="Statistics">
+            <content>
+                <fx:include source="statistics_view.fxml"/>
+            </content>
+        </Tab>
     </tabs>
 
 </TabPane>
