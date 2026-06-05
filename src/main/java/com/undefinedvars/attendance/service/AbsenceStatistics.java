@@ -28,6 +28,8 @@ public final class AbsenceStatistics {
 
         List<StudentAbsenceStats> result = new ArrayList<>();
 
+        // TODO: Optimize this calculation by grouping attendance records in a Map keyed by student,
+        // so we avoid the current nested loop over students and records.
         for (Student student : students) {
             int totalMarked = 0;
             int absentCount = 0;
